@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Currency Converter</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACISURBVDhP7ZExCsJAEAB3lQgeaCPiBwT/4RNsRQR7rRWLgIRATqeI7OKRImZAZJnIDu5uASuDBRe8wLTbMzuzu7tVAwC8+QVvExg1pgrP5nNpUyUcSOVC/eHtQ9a1R6TlGfF2yRKFpX5GfIj8BZZ6bix1Zyw186MsPZi5iFIJQJkCCmeZ+ln80vBFAIB//QKSc+u6nsHj4AAAAABJRU5ErkJggg==" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- ===== HEADER ===== -->
+    <header>
+      <h1>💱 Currency <span>Converter</span></h1>
+      <p class="subtitle">Real-time exchange rates</p>
+    </header>
+
+    <!-- ===== CONVERTER ===== -->
+    <div class="converter-box">
+      <div class="amount-section">
+        <label>Amount</label>
+        <input type="number" id="amount" value="0" min="0" step="0.01" />
+      </div>
+
+      <div class="currency-section">
+        <div class="currency-group">
+          <label>From</label>
+          <div class="select-wrapper">
+            <select id="fromCurrency"></select>
+            <span class="flag-icon" id="fromFlag">🌍</span>
+          </div>
+        </div>
+
+        <div class="swap-btn-wrapper">
+          <button onclick="swapCurrencies()" class="swap-btn">
+            <i class="fas fa-exchange-alt"></i>
+          </button>
+        </div>
+
+        <div class="currency-group">
+          <label>To</label>
+          <div class="select-wrapper">
+            <select id="toCurrency"></select>
+            <span class="flag-icon" id="toFlag">🌍</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Auto-convert indicator (No Convert Button) -->
+      <div class="auto-indicator">
+        <i class="fas fa-sync-alt fa-spin"></i>
+        <span>Auto-convert</span>
+      </div>
+    </div>
+
+    <!-- ===== RESULT ===== -->
+    <div id="result" class="result-box" style="display: none;">
+      <div class="result-amount">
+        <span id="resultFrom">1</span>
+        <span id="resultFromCode">USD</span>
+        <span class="equals">=</span>
+        <span id="resultTo">0.00</span>
+        <span id="resultToCode">EUR</span>
+      </div>
+      <div class="result-rate">
+        <span id="rateDisplay">1 USD = 0.00 EUR</span>
+      </div>
+      <div class="result-time">
+        <i class="fas fa-clock"></i>
+        <span id="updateTime">Updated: Just now</span>
+      </div>
+    </div>
+
+    <!-- ===== POPULAR RATES ===== -->
+    <div class="popular-rates">
+      <h3>Popular Exchange Rates</h3>
+      <div id="popularRates" class="popular-grid">
+        <div class="popular-card">Loading...</div>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-icon">⚡</span>
+          <span class="footer-dev">Developed by <strong>Dinindu Jayampathi</strong></span>
+          <span class="footer-heart">❤️</span>
+        </div>
+        <div class="footer-badge">
+          <span class="badge">🌐 Online Platform</span>
+        </div>
+      </div>
+      <p class="footer-tech">💻 HTML • CSS • JavaScript • Currency-API</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
