@@ -3,101 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Currency Converter</title>
+  <title>Currency Converter - Dinindu</title>
   <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACISURBVDhP7ZExCsJAEAB3lQgeaCPiBwT/4RNsRQR7rRWLgIRATqeI7OKRImZAZJnIDu5uASuDBRe8wLTbMzuzu7tVAwC8+QVvExg1pgrP5nNpUyUcSOVC/eHtQ9a1R6TlGfF2yRKFpX5GfIj8BZZ6bix1Zyw186MsPZi5iFIJQJkCCmeZ+ln80vBFAIB//QKSc+u6nsHj4AAAAABJRU5ErkJggg==" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <!-- ===== HEADER ===== -->
-    <header>
-      <h1>💱 Currency <span>Converter</span></h1>
-      <p class="subtitle">Real-time exchange rates</p>
-    </header>
+  <div class="app-wrapper">
+    <div class="container">
+      
+      <!-- ===== HEADER ===== -->
+      <header class="app-header">
+        <div class="header-top">
+          <div class="logo">
+            <span class="logo-icon">💱</span>
+            <span class="logo-text">Currency<span>Hub</span></span>
+          </div>
+          <div class="header-badge">
+            <span class="live-badge">
+              <span class="dot"></span> Live
+            </span>
+          </div>
+        </div>
+        <p class="header-subtitle">Real-time exchange rates • 20+ currencies</p>
+      </header>
 
-    <!-- ===== CONVERTER ===== -->
-    <div class="converter-box">
-      <div class="amount-section">
-        <label>Amount</label>
-        <input type="number" id="amount" value="0" min="0" step="0.01" />
-      </div>
+      <!-- ===== CONVERTER CARD ===== -->
+      <div class="converter-card">
+        <div class="card-header">
+          <h3><i class="fas fa-exchange-alt"></i> Currency Converter</h3>
+          <span class="powered-by">⚡ Instant</span>
+        </div>
 
-      <div class="currency-section">
-        <div class="currency-group">
-          <label>From</label>
-          <div class="select-wrapper">
-            <select id="fromCurrency"></select>
-            <span class="flag-icon" id="fromFlag">🌍</span>
+        <div class="amount-group">
+          <label class="input-label">
+            <i class="fas fa-coins"></i> Amount
+          </label>
+          <div class="amount-input-wrapper">
+            <input type="number" id="amount" value="1" min="0" step="0.01" />
+            <span class="amount-currency" id="amountCurrency">USD</span>
           </div>
         </div>
 
-        <div class="swap-btn-wrapper">
-          <button onclick="swapCurrencies()" class="swap-btn">
-            <i class="fas fa-exchange-alt"></i>
-          </button>
-        </div>
+        <div class="currency-pair">
+          <div class="currency-select">
+            <label class="input-label">
+              <i class="fas fa-arrow-up"></i> From
+            </label>
+            <div class="select-wrapper">
+              <select id="fromCurrency"></select>
+              <span class="flag-icon" id="fromFlag">🌍</span>
+            </div>
+          </div>
 
-        <div class="currency-group">
-          <label>To</label>
-          <div class="select-wrapper">
-            <select id="toCurrency"></select>
-            <span class="flag-icon" id="toFlag">🌍</span>
+          <div class="swap-btn-wrapper">
+            <button onclick="swapCurrencies()" class="swap-btn">
+              <i class="fas fa-arrow-right-arrow-left"></i>
+            </button>
+          </div>
+
+          <div class="currency-select">
+            <label class="input-label">
+              <i class="fas fa-arrow-down"></i> To
+            </label>
+            <div class="select-wrapper">
+              <select id="toCurrency"></select>
+              <span class="flag-icon" id="toFlag">🌍</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Auto-convert indicator (No Convert Button) -->
-      <div class="auto-indicator">
-        <i class="fas fa-sync-alt fa-spin"></i>
-        <span>Auto-convert</span>
-      </div>
-    </div>
-
-    <!-- ===== RESULT ===== -->
-    <div id="result" class="result-box" style="display: none;">
-      <div class="result-amount">
-        <span id="resultFrom">1</span>
-        <span id="resultFromCode">USD</span>
-        <span class="equals">=</span>
-        <span id="resultTo">0.00</span>
-        <span id="resultToCode">EUR</span>
-      </div>
-      <div class="result-rate">
-        <span id="rateDisplay">1 USD = 0.00 EUR</span>
-      </div>
-      <div class="result-time">
-        <i class="fas fa-clock"></i>
-        <span id="updateTime">Updated: Just now</span>
-      </div>
-    </div>
-
-    <!-- ===== POPULAR RATES ===== -->
-    <div class="popular-rates">
-      <h3>Popular Exchange Rates</h3>
-      <div id="popularRates" class="popular-grid">
-        <div class="popular-card">Loading...</div>
-      </div>
-    </div>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="app-footer">
-      <div class="footer-main">
-        <div class="footer-brand">
-          <span class="footer-icon">⚡</span>
-          <span class="footer-dev">Developed by <strong>Dinindu Jayampathi</strong></span>
-          <span class="footer-heart">❤️</span>
-        </div>
-        <div class="footer-badge">
-          <span class="badge">🌐 Online Platform</span>
+        <div class="auto-indicator">
+          <i class="fas fa-sync-alt fa-spin"></i>
+          <span>Auto-converting...</span>
         </div>
       </div>
-      <p class="footer-tech">💻 HTML • CSS • JavaScript • Currency-API</p>
-    </footer>
+
+      <!-- ===== RESULT CARD ===== -->
+      <div id="result" class="result-card" style="display: none;">
+        <div class="result-header">
+          <span class="result-label">Conversion Result</span>
+          <span class="result-badge">✅ Live</span>
+        </div>
+        <div class="result-amount">
+          <span class="result-from">
+            <span id="resultFrom">1.00</span>
+            <span id="resultFromCode" class="currency-code">USD</span>
+          </span>
+          <span class="equals-icon">=</span>
+          <span class="result-to">
+            <span id="resultTo">0.00</span>
+            <span id="resultToCode" class="currency-code">EUR</span>
+          </span>
+        </div>
+        <div class="result-rate">
+          <i class="fas fa-chart-line"></i>
+          <span id="rateDisplay">1 USD = 0.00 EUR</span>
+        </div>
+        <div class="result-time">
+          <i class="fas fa-clock"></i>
+          <span id="updateTime">Updated: Just now</span>
+        </div>
+      </div>
+
+      <!-- ===== POPULAR RATES ===== -->
+      <div class="popular-section">
+        <div class="section-header">
+          <h3><i class="fas fa-fire"></i> Popular Rates</h3>
+          <span class="section-badge">Trending</span>
+        </div>
+        <div id="popularRates" class="popular-grid">
+          <div class="popular-card skeleton">Loading...</div>
+        </div>
+      </div>
+
+      <!-- ===== FOOTER ===== -->
+      <footer class="app-footer">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <span class="footer-icon">⚡</span>
+            <span class="footer-dev">Developed by <strong>Dinindu Jayampathi</strong></span>
+            <span class="footer-heart">❤️</span>
+          </div>
+          <div class="footer-badge">
+            <span class="badge">🌐 Online Platform</span>
+          </div>
+        </div>
+        <p class="footer-tech">💻 HTML • CSS • JavaScript • ExchangeRate-API</p>
+      </footer>
+    </div>
   </div>
 
   <script src="script.js"></script>
